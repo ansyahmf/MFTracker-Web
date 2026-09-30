@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>MF-Tracker Web</title>
+  <meta name="title" content="MF-Tracker Web" />
+  <meta name="description"
+    content="Aplikasi pencatatan keuangan pribadi untuk mencatat uang masuk maupun keluar, melihat sisa saldo, serta mencari riwayat transaksi." />
+  <meta name="author" content="Mohamad Firdiansyah" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ansyahmf.github.io" />
+  <meta property="og:title" content="MF-Tracker App | Mohamad Firdiansyah" />
+  <meta property="og:description"
+    content="Aplikasi pencatatan keuangan pribadi untuk mencatat uang masuk maupun keluar secara akurat dan efisien." />
+  <link rel="icon" type="image/x-icon" href="image/favicon.png" />
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="tracker-app">
+    <header class="tracker-header">
+      <h1 class="tracker-header_title">MF-Tracker<span style="color:var(--primary)">.web</span></h1>
+      <div class="tracker-header_user">
+        <div class="tracker-header_user-info">
+          <span class="tracker-header_greeting">Halo, <strong>Mohamad Firdiansyah <span
+                id="ansyahmf">(ansyahmf)</span></strong></span>
+          <span class="tracker-header_date">Tracker Bulan Ini</span>
+        </div>
+        <div class="tracker-header_avatar" role="img" aria-label="Avatar Pengguna" aria-hidden="true"></div>
+      </div>
+    </header>
+    <main>
+      <section class="tracker-summary" aria-labelledby="summary-heading">
+        <h2 id="summary-heading" class="visually-hidden">Ringkasan Keuangan</h2>
+        <div class="tracker-summary_balance">
+          <h3 class="tracker-summary_label" style="color: rgba(255,255,255,0.8)">Saldo Saat Ini</h3>
+          <p class="tracker-summary_balance-amount" style="color: #fff">Rp 0</p>
+        </div>
+        <div class="tracker-summary_stat">
+          <h3 class="tracker-summary_label">Pemasukan</h3>
+          <p class="tracker-summary_stat-amount tracker-summary_stat-amount--income">Rp 0</p>
+        </div>
+        <div class="tracker-summary_stat">
+          <h3 class="tracker-summary_label">Pengeluaran</h3>
+          <p class="tracker-summary_stat-amount tracker-summary_stat-amount--expense">Rp 0</p>
+        </div>
+      </section>
+      <section class="tracker-form-section" aria-labelledby="form-heading">
+        <div class="tracker-form-section_card">
+          <h2 id="form-heading" class="tracker-form-section_heading">Tambah Pencatatan Baru</h2>
+          <form id="transactionForm" data-testid="transactionForm" class="tracker-form">
+            <div class="tracker-form_field">
+              <label class="tracker-form_label" for="transactionFormTitleInput">Keterangan</label>
+              <input type="text" id="transactionFormTitleInput" data-testid="transactionFormTitleInput"
+                class="tracker-form_input" placeholder="Misal: Makan siang...">
+            </div>
+            <div class="tracker-form_field">
+              <label class="tracker-form_label" for="transactionFormAmountInput">Nominal (Rp)</label>
+              <input type="number" id="transactionFormAmountInput" data-testid="transactionFormAmountInput"
+                class="tracker-form_input" placeholder="50000">
+            </div>
+            <div class="tracker-form_field">
+              <label class="tracker-form_label" for="transactionFormDateInput">Tanggal</label>
+              <input type="date" id="transactionFormDateInput" data-testid="transactionFormDateInput"
+                class="tracker-form_input">
+            </div>
+            <div class="tracker-form_field">
+              <label class="tracker-form_label" for="transactionFormTypeSelect">Klasifikasi</label>
+              <select id="transactionFormTypeSelect" data-testid="transactionFormTypeSelect" class="tracker-form_input">
+                <option value="income">Uang Masuk (+)</option>
+                <option value="expense">Uang Keluar (-)</option>
+              </select>
+            </div>
+            <button type="submit" data-testid="transactionFormSubmitButton" class="tracker-form_submit">Simpan</button>
+          </form>
+        </div>
+      </section>
+      <section class="tracker-history" aria-labelledby="history-heading">
+        <h2 id="history-heading" class="visually-hidden">Riwayat Transaksi</h2>
+        <div class="tracker-search">
+          <form id="searchTransactionForm" data-testid="searchTransactionForm" class="tracker-search_form"
+            role="search">
+            <input type="search" id="searchTransactionFormTitleInput" data-testid="searchTransactionFormTitleInput"
+              class="tracker-form_input" placeholder="Cari transaksi berdasarkan judul..."
+              aria-label="Kata kunci pencarian transaksi">
+            <button type="submit" data-testid="searchTransactionFormSubmitButton" class="tracker-search_submit"
+              aria-label="Mulai Pencarian">Cari</button>
+          </form>
+        </div>
+        <div class="tracker-history_grid">
+          <div class="tracker-transaction-list">
+            <div class="tracker-transaction-list_header">
+              <h3 class="tracker-transaction-list_title">Arus Pemasukan</h3>
+            </div>
+            <div id="incomeList" data-testid="incomeList" class="tracker-transaction-list_container">
+            </div>
+          </div>
+          <div class="tracker-transaction-list">
+            <div class="tracker-transaction-list_header">
+              <h3 class="tracker-transaction-list_title">Arus Pengeluaran</h3>
+            </div>
+            <div id="expenseList" data-testid="expenseList" class="tracker-transaction-list_container">
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="tracker-footer">
+      <p>&#169; 2026 MF-Tracker.web | Mohamad Firdiansyah.</p>
+    </footer>
+  </div>
+  <script src="main.js"></script>
+</body>
+
+</html>
