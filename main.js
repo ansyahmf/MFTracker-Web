@@ -48,6 +48,12 @@ form.addEventListener('submit', (e) => {
         return;
     }
 
+    // validasi tambahan untuk tanggall
+    if (!date) {
+        alert('Tanggal transaksi tidak boleh kosong.');
+        return;
+    }
+
     if (editingId) {
         const idx = transactions.findIndex(t => t.id === editingId);
         if (idx !== -1) {
